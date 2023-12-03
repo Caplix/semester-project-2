@@ -1,5 +1,13 @@
+
 {
+  "scripts": {
+    "build": "sass src/scss:dist/css",
+    "watch": "sass --watch src/main.scss:dist/main.css & live-server"
+  },
   "dependencies": {
     "bootstrap": "^5.2.0"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
   }
 }

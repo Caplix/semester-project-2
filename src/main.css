@@ -1,0 +1,123 @@
+body {
+  font-family: Cormorant Garamond;
+}
+
+.navbar {
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
+}
+
+.navbar-button {
+  z-index: 10;
+  height: 40px;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  right: 0;
+}
+
+.navbar-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-icon {
+  z-index: 11;
+}
+
+.hero-container {
+  background-color: rgb(46, 46, 46);
+}
+
+.name {
+  font-size: 5vw;
+  opacity: 0.8;
+}
+
+.name-overlap {
+  position: absolute;
+  top: 10vw;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  margin: 0;
+}
+
+.title-overlap {
+  position: relative;
+  text-align: center;
+  margin: 0;
+}
+
+.title {
+  font-size: 3vw;
+}
+
+.bio-overlap {
+  position: relative;
+  text-align: center;
+  margin: 0;
+}
+
+.bio {
+  font-size: 2vw;
+}
+
+.hero-img {
+  width: 100%;
+  height: 50vh;
+  opacity: 0.4;
+}
+
+.main-site-content {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  top: 20vw;
+  width: 100%;
+  padding: 4rem;
+}
+
+.join-now-btn {
+  position: absolute;
+  background-color: gold;
+  top: 10%; /* Adjust this value as needed */
+  height: 7vh;
+  width: 27vw;
+  max-height: 50px;
+  max-width: 150px;
+  z-index: 1000;
+  border-radius: 15%;
+  border: 0;
+}
+
+.img-sizing {
+  height: 100%;
+  width: 100%;
+  max-height: 35rem;
+  max-width: 35rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .navbar-button {
+    display: none;
+  }
+  .navbar {
+    top: 20vw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+  }
+  #navbarSupportedContent {
+    display: block;
+  }
+}
+@media screen and (max-width: 800px) {
+  .join-now-btn {
+    top: 0vw;
+  }
+}/*# sourceMappingURL=main.css.map */

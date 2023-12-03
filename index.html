@@ -4,17 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="/dist/main.css">
   <title>Regal Auctions</title>
 </head>
 <body>
 
-<div class="container-fluid p-0">
-    <div><h1>Regal Auctions</h1></div>
-    <img src="/Images/Regal-Auctions-frontImg.jpg" alt="Responsive Image" class="img-fluid" style="max-height: 75vh; width: 100%; object-fit: cover;">
+  <div class="container-fluid p-0 hero-container">
+    <button class="position-absolute navbar-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="w-100 h-100 navbar-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="22" viewBox="0 0 448 512">
+                <path fill="#ffffff" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+            </svg>
+        </span>
+    </button>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-5 mr-auto">
+                <li class="nav-item active ">
+                    <a class="nav-link text-white" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="/registeruser.html">Register</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="#">Login</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="#">Browse</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="name name-overlap text-white">REGAL AUCTIONS</h1>
+    <div class="main-site-content">
+        <h3 class="title-overlap text-white mt-5">THRILLING BIDDING EXPERIENCES AWAIT</h3>
+        <p class="bio-overlap text-white">EXPLORE OUR CUTTING-EDGE AUCTION SITE AND WIN COVETED TREASURES</p>
+        <button class="join-now-btn font-weight-bold"><a class="text-black" href="/registeruser.html">Join now</a></button>
+    </div>
+
+    <img src="/Images/Regal-Auctions-frontImg.jpg" alt="Responsive Image" class="img-fluid hero-img ">
+
 </div>
 
-<!-- Bootstrap JS and Popper.js -->
+
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-6"><img class="img-sizing" src="/Images/regal-auctions-fillerImg.jpg" alt=""></div>
+      <div class="col-6">
+        <h4>01</h4>
+        <p class="">Effortless listings</p>
+        <p>Easily list your items for bidding!</p>
+        <button class="btn-secondary border-0">read more</button>
+      </div>
+  </div>
+  <div class="row mt-5">
+      <div class="col-6">
+        <h4>02</h4>
+        <p>Spirited Auctions</p>
+        <p>Participate in our spirited auctions!</p>
+        <button class="btn-secondary border-0">read more</button>
+      </div>
+      <div class="col-6"><img class="img-sizing" src="/Images/regal-auctions-lamp.jpg" alt=""></div>
+
+  </div>
+  <div class="row mt-5">
+    <div class="col-6"><img class="img-sizing" src="/Images/regal-auctions-fillerImg.jpg" alt=""></div>
+    <div class="col-6">
+      <h4>03</h4>
+      <p>Credit Rewards</p>
+      <p>Get 1000 credits upon joining to kickstart your bidding journey!</p>
+      <button class="btn-secondary border-0">read more</button></div>
+  </div>
+</div>
+
+
+<footer class="footer mt-5 border-top">
+  <div class="container mt-3">
+      <div class="row">
+          <div class="col-md-12">
+              <p>© 2023 Regal Auctions</p>
+              <p>Address: bananveien 23 | Phone: 38299300 | Email: regalAuctions@gmail.com</p>
+          </div>
+      </div>
+  </div>
+</footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
