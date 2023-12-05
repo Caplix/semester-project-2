@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/dist/main.css">
+  <title>Regal Auctions</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-5 mr-auto">
+            <li class="nav-item active ">
+                <a class="nav-link " href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Browse</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <div class="modal" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add form elements for editing profile picture and bio -->
+          <form id="editProfileForm">
+            <div class="form-group">
+              <label for="newProfilePicture">New Profile Picture URL</label>
+              <input type="text" class="form-control" id="newProfilePicture" placeholder="Enter new profile picture URL">
+            </div>
+            <div class="form-group">
+              <label for="newBio">New Bio</label>
+              <textarea class="form-control" id="newBio" rows="3" placeholder="Enter new bio"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="" class="card-img-top" alt="Profile Picture">
+              <div class=" -body">
+                <h5 class="profile-user-name"></h5>
+                <p class="bio-text"></p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">
+                  Edit Profile
+                </button>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Create Auction Listing</h5>
+                <form id="listingForm">
+                  <div class="form-group">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" class="form-control" id="itemName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" rows="3" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Create Listing</button>
+                </form>
+              </div>
+            </div>
+      
+            <div class="card mt-3">
+              <div class="card-body">
+                <h5 class="card-title">My Auction Listings</h5>
+                <ul id="listingContainer" class="list-group">
+                  <!-- Listings will be dynamically added here -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer mt-5 border-top">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>© 2023 Regal Auctions</p>
+                    <p>Address: bananveien 23 | Phone: 38299300 | Email: regalAuctions@gmail.com</p>
+                </div>
+            </div>
+        </div>
+      </footer>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

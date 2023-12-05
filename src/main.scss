@@ -2,13 +2,13 @@ body{
   font-family: Cormorant Garamond;
 }
 
-.navbar {
+.index-navbar {
   background-color: transparent;
   position: absolute;
   z-index: 1;
 }
 
-.navbar-button {
+.index-navbar-button {
   z-index: 10;
   height: 40px;
   width: 60px;
@@ -17,12 +17,12 @@ body{
   right: 0;
 }
 
-.navbar-button:focus {
+.index-navbar-button:focus {
   outline: none;
   box-shadow: none;
 }
 
-.navbar-icon {
+.index-navbar-icon {
   z-index: 11;
 }
 
@@ -95,11 +95,28 @@ body{
   max-width: 35rem;
 }
 
+.feed-item{
+  border: 1px solid rgb(128, 120, 53);
+  margin-bottom: 20px;
+  padding: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.feed-img{
+  width: 100%;
+  height: auto;
+
+}
+
+
  @media screen and (min-width: 1000px) {
-  .navbar-button{
+  .index-navbar-button{
     display: none;
   }
-  .navbar{
+  .index-navbar{
     top: 20vw;
     position: absolute;
     left: 50%;
@@ -115,4 +132,3 @@ body{
     top: 0vw;
   }
  }
-
