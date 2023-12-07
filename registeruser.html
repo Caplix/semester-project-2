@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/dist/main.css">
-  <script src="/dist/js/newprofile.js" type="module"></script>
+  <script src="/src/js/newprofile.js" type="module"></script>
   <title>Regal Auctions</title>
 </head>
 <body>
@@ -33,7 +33,10 @@
     
                 <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
 
-                <div class="alert-container"></div>
+                <div class="alert-container alert alert-danger mt-2 hidden">
+                    <h4 class="alert-heading">Error</h4>
+                    <!-- <p class="alert-text" id="alert-message"></p> -->
+                </div>
             </form>
         </div>
     </div>
