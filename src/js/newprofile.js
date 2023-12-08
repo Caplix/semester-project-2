@@ -54,8 +54,6 @@ try {
         const alertMessage = document.querySelector("#alert-message");
         const alertContainer = document.querySelector(".alert-container");
 
-        
-
         if(res.ok){
             window.location.href = "logIn.html";
             console.log("cool")

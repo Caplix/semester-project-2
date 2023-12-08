@@ -1,12 +1,4 @@
 
-
-/* export function checkToken (){
-    const isLoggedIn = localStorage.getItem("token") === true
-    return isLoggedIn
-} */
-
-
-
 export function logout(){
     const isLoggedIn = localStorage.getItem("token") !== null
     if(isLoggedIn){

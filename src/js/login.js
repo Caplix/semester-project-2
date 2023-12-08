@@ -23,14 +23,34 @@ document.addEventListener('DOMContentLoaded', function () {
             }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         });
-
-        if (res.status !== 200) {
-            console.log(res.status);
-        } else {
+        const alertMessage = document.querySelector("#alert-message");
+        const alertContainer = document.querySelector(".alert-container");
+        
+        if (res.ok) {
             const data = await res.json();
             localStorage.setItem('user', JSON.stringify(data));
             localStorage.setItem('token', data.accessToken);
             window.location.href = './profile.html';
+        } else {
+            const errorData = await res.json();
+            /* alert("signup failed." + errorData.message) */
+            console.log(errorData)
+            
+            alertContainer.innerHTML = ""
+            const alertHeading = document.createElement("h4")
+            alertHeading.innerText = "Errors"
+            alertContainer.append(alertHeading)
+            
+            errorData.errors.forEach((error) => {
+                const alertText = document.createElement("p")
+                alertText.classList.add("alert-text")
+                alertText.innerText = `${error.message}`
+
+                alertContainer.append(alertText)
+            })
+
+            alertContainer.classList.remove("hidden")
+
         }
     } catch (error) {
         console.error('Something went wrong', error);
