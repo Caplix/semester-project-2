@@ -111,6 +111,73 @@ body{
 
 }
 
+.user-auction-container {
+  padding: 1.25rem;
+}
+
+.list-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+  width: 100%;
+  height: 120px;
+}
+
+.list-item-imagecontainer {
+  height: 100%;
+  width: auto;
+}
+.list-item-image {
+  width: auto;
+  height: 100%;
+}
+
+.list-item-content {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.content-title, .content-time {
+  margin: 0;
+}
+
+.content-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem 1rem 2rem;
+  align-items: center;
+}
+
+.content-bottom {
+  display: flex;
+}
+
+.content-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.auc-listing-control {
+  width: 35px;
+  height: 35px;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.content-desc {
+  overflow-y: scroll;
+  max-height: 50px;
+  margin: 0;
+}
+
 .hidden{
   visibility: hidden;
 }

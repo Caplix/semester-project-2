@@ -1,11 +1,9 @@
 const BASE_URL = 'https://api.noroff.dev/api/v1/';
-const LISTING_URL = 'auction/listings';
+const LISTING_URL = 'auction/listings/';
 import {logout, setLogBtnTxt} from "./logout.js";
 
 setLogBtnTxt()
 const logInLogOutBtn = document.getElementById("login-logout");
-
-
 
 logInLogOutBtn.addEventListener("click", function(){
 
@@ -55,7 +53,7 @@ async function getPosts() {
 getPosts();
 
 
-const dateConverter = (date) => {
+export const dateConverter = (date) => {
 
   const options = {
       weekday:"long",
@@ -70,9 +68,7 @@ const dateConverter = (date) => {
 
   return norwegianDate;
 }
-
-
- const norwegianEndDate = (endDate) => {
+ export const norwegianEndDate = (endDate) => {
   const endDateTime = new Date(endDate).getTime();
   const now = new Date().getTime();
   const timeDifference = endDateTime - now;

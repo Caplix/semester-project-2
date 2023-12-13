@@ -29,13 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Registration failed:', e);
                 
             }
-            
-        }
-        
+        }    
     });
 });
-
-
 
 async function registerUser(newUserName, newEmail, newPassword){
     console.log(newUserName, newEmail, newPassword);
