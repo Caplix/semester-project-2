@@ -2,6 +2,7 @@ const BASE_URL = 'https://api.noroff.dev/api/v1/';
 const LISTING_URL = 'auction/listings/';
 import {logout, setLogBtnTxt} from "./logout.js";
 
+
 setLogBtnTxt()
 const logInLogOutBtn = document.getElementById("login-logout");
 
@@ -12,7 +13,7 @@ logInLogOutBtn.addEventListener("click", function(){
 
 async function getPosts() {
   try {
-    const response = await fetch(`${BASE_URL}${LISTING_URL}`);
+    const response = await fetch(BASE_URL+ LISTING_URL + "?_seller=true");
     
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -30,15 +31,19 @@ async function getPosts() {
       const endsAtDate = norwegianEndDate(post.endsAt);
 
       postElement.innerHTML = `
-        <h1 class="card-title">${post.title}</h1>
+      <div class="place-seller-name mb-3">
+        <img class="profile-img-feed" src="${post.seller.avatar}" alt="Post Image">
+        <h1 class="card-title">${post.seller.name}</h1>
+      </div>
         <img class="card-img-top feed-img" src="${post.media[0]}" alt="Post Image">
+        <h2 class="card-text">${post.title}</h2>
+
         <h4 class="card-text">${post.description}</h4>
 
         <p class="card-text">Listing created: ${createdDate}</p>
         <p class="card-text">Bidding ends: ${endsAtDate}</p>
 
         <a href="post-specific-page.html?id=${post.id}" class="btn btn-primary mb-3">View item</a>
-        <a href="post-specific-page.html" class="btn btn-primary mb-3">Bid on item</a>
     `;
 
       feedContainer.appendChild(postElement);

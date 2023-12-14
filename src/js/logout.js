@@ -39,6 +39,7 @@ export function setLogBtnTxt() {
 
         navbarContent.append(navbarItem)
         navbarItem.append(navbarBtn)
+        
     }
 }
 

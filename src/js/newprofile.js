@@ -3,14 +3,12 @@ const NEW_USER_URL = `auction/auth/register`;
 
 
 document.addEventListener('DOMContentLoaded', function () {
-/*     const invalidAlert = document.querySelector("#alert-message");
- */    let form = document.getElementById('signupForm');
-/*     const invalidAlert = document.querySelector("#alert-message");
- */    /* invalidAlert.textContent = `RETARD` */
+   let form = document.getElementById('signupForm');
+
 
     form.addEventListener('submit', async (event) => {
         
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); 
 
         const newUserName = document.getElementById('username').value;
         const newEmail = document.getElementById('email').value;

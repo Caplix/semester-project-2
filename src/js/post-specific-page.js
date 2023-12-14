@@ -18,8 +18,6 @@ const dateConverter = (date) => {
   
     return norwegianDate;
   }
-  
-  
    const norwegianEndDate = (endDate) => {
     const endDateTime = new Date(endDate).getTime();
     const now = new Date().getTime();
@@ -37,6 +35,12 @@ const dateConverter = (date) => {
   }
 
 
+  function sortHighest(bids){
+    console.log(bids, "heisann")
+    const sortedBids = bids.sort((a,b)=> b.amount - a.amount)
+    return sortedBids[0];
+}
+
 function getSpecificPost() {
     const queryString = document.location.search;
     const params = new URLSearchParams(queryString);
@@ -50,7 +54,8 @@ async function specificPost(id) {
         const data = await getPostData(id);
         console.log(data)
         const specificPostContainer = document.getElementById("post-details");
-        specificPostContainer.innerHTML = buildSpecificPost(data);      
+        specificPostContainer.innerHTML = buildSpecificPost(data);    
+        applyItemDetails(data)  
     } catch (err) {
         console.error(err.status);
     }
@@ -58,7 +63,7 @@ async function specificPost(id) {
 
 async function getPostData(id) {
     const res = await fetch(
-        BASE_URL + LISTING_URL_ID.replace('{id}', id), // Replace {id} with the actual id
+        (BASE_URL + LISTING_URL_ID + "?_seller=true" + "&_bids=true").replace('{id}', id), // Replace {id} with the actual id
         {
             method: "GET",
             headers: {
@@ -70,19 +75,55 @@ async function getPostData(id) {
     return res.json();
 }
 
-function buildSpecificPost(data) {
+function buildSpecificPost(data)   {
     const createdDate = dateConverter(data.created);
     const endsAtDate = norwegianEndDate(data.endsAt);
-
+    console.log(data)
     return `
-    <h1 class="card-title">${data.title}</h1>
-    <img class="card-img-top feed-img" src="${data.media}" alt="Post Image">
-    <h4 class="card-text">${data.description}</h4>
+    <div class="place-seller-name mb-3">
+        <img class="profile-img-feed" src="${data.seller.avatar}" alt="Post Image">
+        <h1 class="card-title">${data.seller.name}</h1>
+      </div>
+        <img class="card-img-top feed-img" src="${data.media[0]}" alt="Post Image">
+        <h2 class="card-text">${data.title}</h2>
 
-    <p class="card-text">Listing created: ${createdDate}</p>
-    <p class="card-text">Bidding ends: ${endsAtDate}</p>
+        <h4 class="card-text">${data.description}</h4>
+
+        <p class="card-text">Listing created: ${createdDate}</p>
+        <p class="card-text">Bidding ends: ${endsAtDate}</p>
+        <p class="card-text">Current highest bid: ${sortHighest(data.bids).amount}</p>
+
+        <button class="btn btn-success" data-toggle="modal" data-target="#bidding-modal">Bid on item</button>
     `;
+
 }
+
+async function applyItemDetails(data){
+    const highestBid = sortHighest(data.bids);
+    console.log(data, "dette er data")
+     console.log(highestBid, "halla balla!")
+     const createdDate = dateConverter(data.created);
+    const endsAtDate = norwegianEndDate(data.endsAt);
+    const itemTitle = document.getElementById("item-title")
+    const itemImg = document.getElementById("item-img")
+    const profileImg = document.getElementById("profile-img")
+    const profileName = document.getElementById("modal-profile-name")
+    const itemDescription = document.getElementById("item-description")
+    const auctionCreated = document.getElementById("auction-created")
+    const auctionEnd = document.getElementById("auction-end")
+     const highestBidElem = document.getElementById("auction-highest-bids")
+ 
+    itemTitle.innerText = data.title;
+    itemImg.src = data?.media[0]|| "/Images/no-profile-picture.jpg";
+    profileImg.src = data.seller.avatar || "/Images/no-profile-picture.jpg";
+    profileName.innerText = data.seller.name;
+    itemDescription.innerText = data.description;
+    auctionCreated.innerText = `Auction made: ${createdDate}`
+    auctionEnd.innerHTML = `Auction ends: ${endsAtDate}`
+    highestBidElem.innerText = `${(highestBid).amount}`
+    
+}
+
 
 
 setLogBtnTxt()
