@@ -155,30 +155,27 @@ async function getUserListings(BASE_URL, userData, GET_PROFILE) {
   if (listings.length < 1 && !userAucList) {
     userAucList.innerHTML = ""
   } else {
-
-  
-  console.log(listings, "LISSSS")
-  console.log(userAucList, "userAucList")
-  listings.forEach((listing) => {
-   const aucListTitle = listing?.title
-   const aucListImage = listing?.media[0]
-   const aucListCreateAt = dateConverter (listing?.created)
-   const aucListEndAt = norwegianEndDate (listing?.endsAt)
-   const aucListLi = document.createElement("li")
-    /* aucListTags.innerText += listing?.tags */
-    aucListLi.classList.add("list-item")
-    aucListLi.innerHTML = `
-    <div class="list-item-imagecontainer">
-      <img class="list-item-image" src="${aucListImage}"/>
-    </div>
-    <div class="list-item-content">
-      <div class="content-top">
-      <p class="content-title">${aucListTitle}</p>
-      <p class="content-time"> created: ${aucListCreateAt}</p>
-      <p class="content-time"> ends in: ${aucListEndAt}</p>
-    </div>
-    </div>
-`    
+    listings.forEach((listing) => {
+      const aucListTitle = listing?.title;
+      const aucListImage = listing?.media[0];
+    
+      const aucListLi = document.createElement("li");
+      aucListLi.classList.add("list-item", "row", "mb-3");
+    
+      aucListLi.innerHTML = `
+        <div class="list-item-imagecontainer col-6 col-md-4 col-lg-3">
+          <img class="list-item-image img-fluid" src="${aucListImage}" alt="Listing Image"/>
+        </div>
+        <div class="list-item-content col-6 col-md-8 col-lg-9">
+        <div class="content-top d-none d-md-block">
+        <h4 class="content-title text-truncate">${aucListTitle}</h4>
+      </div>
+          <div class="content-middle">
+            <a href="post-specific-page.html?id=${listing.id}" class="btn btn-primary col-12">View Item</a>
+          </div>
+        </div>
+      `;
+      //the post-specific-page dosnt work if the post dosnt have a amount bid on it(only occurs on personal posts for some reason)// 
     
     userAucList.appendChild(aucListLi)
     

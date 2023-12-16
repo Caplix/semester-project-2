@@ -1,5 +1,7 @@
 const BASE_URL = 'https://api.noroff.dev/api/v1/';
 const LISTING_URL_ID = 'auction/listings/{id}';
+const BIDDING_URL_ID = 'auction/listings/{id}/bids';
+
 import {logout, setLogBtnTxt} from "./logout.js";
 
 
@@ -36,17 +38,17 @@ const dateConverter = (date) => {
 
 
   function sortHighest(bids){
-    console.log(bids, "heisann")
     const sortedBids = bids.sort((a,b)=> b.amount - a.amount)
     return sortedBids[0];
 }
 
-function getSpecificPost() {
+ function getSpecificPost() {
     const queryString = document.location.search;
     const params = new URLSearchParams(queryString);
     const id = params.get("id");
     console.log(id);
     specificPost(id);
+    confirmBid(id)
 }
 
 async function specificPost(id) {
@@ -56,8 +58,10 @@ async function specificPost(id) {
         const specificPostContainer = document.getElementById("post-details");
         specificPostContainer.innerHTML = buildSpecificPost(data);    
         applyItemDetails(data)  
+        
+
     } catch (err) {
-        console.error(err.status);
+        console.log(err);
     }
 }
 
@@ -80,20 +84,17 @@ function buildSpecificPost(data)   {
     const endsAtDate = norwegianEndDate(data.endsAt);
     console.log(data)
     return `
-    <div class="place-seller-name mb-3">
+    <div class="place-seller-name mb-3 mt-3">
         <img class="profile-img-feed" src="${data.seller.avatar}" alt="Post Image">
         <h1 class="card-title">${data.seller.name}</h1>
       </div>
         <img class="card-img-top feed-img" src="${data.media[0]}" alt="Post Image">
         <h2 class="card-text">${data.title}</h2>
-
         <h4 class="card-text">${data.description}</h4>
-
         <p class="card-text">Listing created: ${createdDate}</p>
         <p class="card-text">Bidding ends: ${endsAtDate}</p>
-        <p class="card-text">Current highest bid: ${sortHighest(data.bids).amount}</p>
-
-        <button class="btn btn-success" data-toggle="modal" data-target="#bidding-modal">Bid on item</button>
+        <p class="card-text">Current highest bid: ${sortHighest(data.bids).amount} credits</p>
+        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#bidding-modal">Bid on item</button>
     `;
 
 }
@@ -111,7 +112,7 @@ async function applyItemDetails(data){
     const itemDescription = document.getElementById("item-description")
     const auctionCreated = document.getElementById("auction-created")
     const auctionEnd = document.getElementById("auction-end")
-     const highestBidElem = document.getElementById("auction-highest-bids")
+    const highestBidElem = document.getElementById("auction-highest-bids")
  
     itemTitle.innerText = data.title;
     itemImg.src = data?.media[0]|| "/Images/no-profile-picture.jpg";
@@ -120,8 +121,80 @@ async function applyItemDetails(data){
     itemDescription.innerText = data.description;
     auctionCreated.innerText = `Auction made: ${createdDate}`
     auctionEnd.innerHTML = `Auction ends: ${endsAtDate}`
-    highestBidElem.innerText = `${(highestBid).amount}`
-    
+    highestBidElem.innerText = `${(highestBid).amount} credits`
+}
+
+
+
+const placeBidBtn = document.getElementById("place-bid"); // replace "your-form-id" with the actual ID of your form
+
+async function confirmBid(id){
+
+    placeBidBtn.addEventListener("click", async (e) => {
+        e.preventDefault(); // prevent the default form submission behavior
+
+        const userBid = parseInt(document.getElementById("bid-amount").value.trim());
+
+        const bidData = {
+            amount: userBid,
+        };
+
+        const biddingId = id;
+
+        try {
+            const result = await bidOnItem(biddingId, bidData);
+            console.log(result); // handle the result as needed
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
+}
+
+async function bidOnItem(id, bidData) {
+    try{
+    const res = await fetch(
+        (BASE_URL + BIDDING_URL_ID + "?_seller=true" + "&_bids=true").replace('{id}', id),
+        {
+            method: "POST",
+            body: JSON.stringify(bidData),
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json; charset=UTF-8",
+            },
+        }
+        
+        
+    );
+        const alertMessage = document.querySelector("#alert-message");
+        const alertContainer = document.querySelector(".alert-container");
+    if(res.ok) {
+        return res.json();
+    } else{
+        const errorData = await res.json();
+            /* alert("signup failed." + errorData.message) */
+            console.log(errorData)
+            
+            alertContainer.innerHTML = ""
+            const alertHeading = document.createElement("h4")
+            alertHeading.innerText = "Errors"
+            alertContainer.append(alertHeading)
+            
+            errorData.errors.forEach((error) => {
+                const alertText = document.createElement("p")
+                alertText.classList.add("alert-text")
+                alertText.innerText = `${error.message}`
+
+                alertContainer.append(alertText)
+            })
+
+            alertContainer.classList.remove("hidden")
+    }
+
+}
+    catch (error) {
+        console.error('Error:', error);
+    }
+
 }
 
 

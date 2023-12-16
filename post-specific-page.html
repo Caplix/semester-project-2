@@ -27,8 +27,8 @@
     </div>
 </nav>  
 
-      <div class="container mt-5">
-        <div id="post-details" class="card">
+      <div class="container mt-5 specific-post-container">
+        <div id="post-details" class="card col-sm-4 col-md-6 col-lg-7">
         </div>
     </div>
 
@@ -61,10 +61,21 @@
                   <div class="higest-bid">
                     <p class="higest-item-bids" id="auction-highest-bids"></p>
                   </div>
+                  <form id="place-bid-form">
+                    <div class="place-bid">
+                      <label for="bidAmount">Your Bid Amount:</label>
+                      <input type="number" class="form-control" id="bid-amount" placeholder="Enter your bid amount" required>
+                      <div class="alert-container alert alert-danger mt-2 hidden">
+                        <h4 class="alert-heading">Error</h4>
+                        <!-- <p class="alert-text" id="alert-message"></p> -->
+                    </div>
+                    </div>
+                  </form>
             </div>  
             <div class="modal-footer">
               <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Bid on item</button>
+              <button type="submit" class="btn btn-primary mt-2" id="place-bid">Place Bid</button>
+              
             </div>
           </div>
       </div>

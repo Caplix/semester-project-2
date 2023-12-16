@@ -13,7 +13,7 @@ logInLogOutBtn.addEventListener("click", function(){
 
 async function getPosts() {
   try {
-    const response = await fetch(BASE_URL+ LISTING_URL + "?_seller=true");
+    const response = await fetch(BASE_URL+ LISTING_URL +"?sort=created" + "&_seller=true");
     
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

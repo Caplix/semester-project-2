@@ -117,6 +117,11 @@ body{
 
 }
 
+.specific-post-container{
+  display: flex;
+  justify-content: center;
+}
+
 
 
 .modal-content{
@@ -203,6 +208,8 @@ height: auto;
   width: 100%;
   height: 100%;
   padding: 0.5rem 2rem 0.5rem 2rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .content-title, .content-time {
