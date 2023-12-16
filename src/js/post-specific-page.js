@@ -39,7 +39,7 @@ const dateConverter = (date) => {
 
   function sortHighest(bids){
     const sortedBids = bids.sort((a,b)=> b.amount - a.amount)
-    return sortedBids[0];
+    return sortedBids;
 }
 
  function getSpecificPost() {
@@ -82,6 +82,12 @@ async function getPostData(id) {
 function buildSpecificPost(data)   {
     const createdDate = dateConverter(data.created);
     const endsAtDate = norwegianEndDate(data.endsAt);
+    let creditText = ""
+    if (sortHighest(data.bids)[0]?.amount) {
+    creditText = " Credits"
+    } else {
+        creditText = ""
+    }
     console.log(data)
     return `
     <div class="place-seller-name mb-3 mt-3">
@@ -93,16 +99,16 @@ function buildSpecificPost(data)   {
         <h4 class="card-text">${data.description}</h4>
         <p class="card-text">Listing created: ${createdDate}</p>
         <p class="card-text">Bidding ends: ${endsAtDate}</p>
-        <p class="card-text">Current highest bid: ${sortHighest(data.bids).amount} credits</p>
+        <p class="card-text">Current highest bid: ${sortHighest(data.bids)[0]?.amount || "No bids"}${creditText}</p>
         <button class="btn btn-success mb-3" data-toggle="modal" data-target="#bidding-modal">Bid on item</button>
     `;
 
 }
 
-async function applyItemDetails(data){
+async function applyItemDetails(data){9
     const highestBid = sortHighest(data.bids);
     console.log(data, "dette er data")
-     console.log(highestBid, "halla balla!")
+     console.log(highestBid)
      const createdDate = dateConverter(data.created);
     const endsAtDate = norwegianEndDate(data.endsAt);
     const itemTitle = document.getElementById("item-title")
@@ -121,7 +127,14 @@ async function applyItemDetails(data){
     itemDescription.innerText = data.description;
     auctionCreated.innerText = `Auction made: ${createdDate}`
     auctionEnd.innerHTML = `Auction ends: ${endsAtDate}`
-    highestBidElem.innerText = `${(highestBid).amount} credits`
+    let creditText = ""
+    if (highestBid[0]?.amount) {
+    creditText = " Credits"
+    } else {
+        creditText = ""
+    }
+
+    highestBidElem.innerText = `Current highest bid: ${(highestBid)[0]?.amount || "No bids"} ${creditText} `
 }
 
 

@@ -11,9 +11,25 @@ logInLogOutBtn.addEventListener("click", function(){
   logout()
 })
 
+window.addEventListener("scroll", (e)=>{
+  loadMorePosts()
+  console.log("STOP IT")
+})
+
+let postsLoaded = 0
+
+function loadMorePosts() {
+  const isAtBottom = (window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight
+ if (isAtBottom){
+  getPosts()
+  postsLoaded += 5
+      console.log(postsLoaded, "POSTSLOADED")
+ }
+}
+
 async function getPosts() {
   try {
-    const response = await fetch(BASE_URL+ LISTING_URL +"?sort=created" + "&_seller=true");
+    const response = await fetch(BASE_URL+ LISTING_URL +"?sort=created" + "&_seller=true" + "&limit=5" + `&offset=${postsLoaded}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -38,7 +54,7 @@ async function getPosts() {
         <img class="card-img-top feed-img" src="${post.media[0]}" alt="Post Image">
         <h2 class="card-text">${post.title}</h2>
 
-        <h4 class="card-text">${post.description}</h4>
+        <h4 class="card-te  xt">${post.description}</h4>
 
         <p class="card-text">Listing created: ${createdDate}</p>
         <p class="card-text">Bidding ends: ${endsAtDate}</p>
