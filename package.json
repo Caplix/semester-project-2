@@ -1,7 +1,7 @@
 
 {
   "scripts": {
-    "build": "sass src/scss:dist/css",
+    "build": "sass src/main.scss:dist/main.css",
     "watch": "sass --watch src/main.scss:dist/main.css & live-server"
   },
   "dependencies": {
