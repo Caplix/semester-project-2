@@ -181,6 +181,13 @@ async function bidOnItem(id, bidData) {
         const alertMessage = document.querySelector("#alert-message");
         const alertContainer = document.querySelector(".alert-container");
     if(res.ok) {
+        alertContainer.innerHTML = ""
+        const alertHeading = document.createElement("h4");  
+        alertHeading.innerText = `Bid has been placed`     
+        alertContainer.append(alertHeading)
+        alertContainer.classList.remove("hidden")
+
+        
         return res.json();
     } else{
         const errorData = await res.json();
